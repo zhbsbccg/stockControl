@@ -8,20 +8,5 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
         default-autowire="byName">
 	
-	 <!-- 配置自动扫描的包 -->
-	 <context:component-scan base-package="cn.zhb.*"></context:component-scan>
-	
-	<!-- 数据库映射配置DataSource.xml -->
-	<import resource="DataSource.xml"/> 
-	
-	<!-- 视图映射配置 -->
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
+	 
 </beans>

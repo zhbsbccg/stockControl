@@ -19,6 +19,7 @@ public class LoginInAction {
 	@RequestMapping("/checkUser")
 	public void doLogin(HttpServletResponse resp, String username, String password) throws IOException {
 		System.out.println("登录");
+		
 		resp.sendRedirect("/main.action");
 	}
 }

@@ -32,7 +32,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="/login/checkUser.action" method="post">
+            <form id="loginForm" v-on:submit.prevent="onSubmitForm">
               <h1>用户登录</h1>
               <div class="item">
                 <input type="text" name="username" class="form-control" placeholder="用户名" required="required"/>
@@ -41,7 +41,7 @@
                 <input type="password" name="password" class="form-control" placeholder="密码" required="required"/>
               </div>
               <div>
-              	<button type="submit" class="btn">登录</button>
+              	<button class="btn" type="submit" >登录</button>
                <!--  <a class="btn btn-default submit" href="index.html">登录</a> -->
               </div>
 
@@ -69,10 +69,18 @@
     <script src="/dist/gentelella/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="/dist/gentelella/vendors/nprogress/nprogress.js"></script>
-	
+	<!-- vuejs -->
+	<script src="/js/vue/vue.js"></script>
 	<script type="text/javascript">
-		$(function() {
+		var formVue = new Vue({
+		  el: '#loginForm',
+		  methods: {
+			  onSubmitForm: function() {
+				  alert(1);
+			  }
+		  }
 		});
+
 	</script>
   </body>
 </html>

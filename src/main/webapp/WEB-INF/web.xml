@@ -1,16 +1,8 @@
 
 <web-app>
-  <display-name>stockControl Web Application</display-name>
+  <!-- <display-name>stockControl Web Application</display-name> -->
   	<!-- 在servlet中方便拿到上下文环境 -->
-  	<!--
-  		
-  	<context-param>
-	    <param-name>contextConfigLocation</param-name>
-	    <param-value>/WEB-INF/spring.xml</param-value>
-	</context-param>
-	   <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener> -->
+  	
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

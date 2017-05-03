@@ -20,6 +20,6 @@ public class LoginInAction {
 	public void doLogin(HttpServletResponse resp, String username, String password) throws IOException {
 		System.out.println("登录");
 		
-		resp.sendRedirect("/main.action");
+		//resp.sendRedirect("/main.action");
 	}
 }

@@ -10,7 +10,7 @@
 	
 	 <!-- 配置自动扫描的包 -->
 	 <context:component-scan base-package="cn.zhb.*"></context:component-scan>
-	
+	 <mvc:annotation-driven/> 
 	<!-- 数据库映射配置DataSource.xml -->
 	
 	
@@ -30,11 +30,9 @@
 	       class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
 	  <property name="prefix" value="/WEB-INF/pages/" />
 	  <property name="suffix" value=".html" />
-	  <!-- HTML is the default value, added here for the sake of clarity.          -->
 	  <property name="templateMode" value="HTML" />
-	  <!-- Template cache is true by default. Set to false if you want             -->
-	  <!-- templates to be automatically updated when modified.                    -->
 	  <property name="cacheable" value="false" />
+	  <property name="characterEncoding" value="UTF-8"/>  
 	</bean>
 	    
 	<!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
@@ -42,11 +40,12 @@
 	<bean id="templateEngine"
 	      class="org.thymeleaf.spring4.SpringTemplateEngine">
 	  <property name="templateResolver" ref="templateResolver" />
-	  <!-- Enabling the SpringEL compiler with Spring 4.2.4 or newer can speed up  -->
-	  <!-- execution in most scenarios, but might be incompatible with specific    -->
-	  <!-- cases when expressions in one template are reused across different data -->
-	  <!-- ypes, so this flag is "false" by default for safer backwards            -->
-	  <!-- compatibility.                                                          -->
 	  <property name="enableSpringELCompiler" value="true" />
 	</bean>	
+	<!-- 必须的 -->
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">  
+	    <property name="templateEngine" ref="templateEngine" />  
+	    <!--解决中文乱码-->  
+	    <property name="characterEncoding" value="UTF-8"/>  
+	  </bean>  
 </beans>

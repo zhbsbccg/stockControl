@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
 public class LoginInAction {
 	
-	@RequestMapping("/in")
-	public String page() {
-		return "/login/in";
+	@RequestMapping("/login")
+	public String loginIn() {
+		System.out.println("dologin in");
+		return "login/in";
 	}
 	
 	@RequestMapping("/checkUser")

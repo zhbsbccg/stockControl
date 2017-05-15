@@ -12,7 +12,7 @@
 	 <context:component-scan base-package="cn.zhb.*"></context:component-scan>
 	 <mvc:annotation-driven/> 
 	<!-- 数据库映射配置DataSource.xml -->
-	
+	 <import resource="dataSource.xml" />
 	
 	<!-- 视图映射配置 -->
    <!--  <bean id="viewResolver"

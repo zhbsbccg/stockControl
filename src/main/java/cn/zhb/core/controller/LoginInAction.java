@@ -1,4 +1,4 @@
-package cn.zhb.user.controller;
+package cn.zhb.core.controller;
 
 import java.io.IOException;
 

@@ -8,9 +8,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
         default-autowire="byName">
         
-        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		  <property name="dataSource" ref="dataSource" />
-		</bean>
+        
         
         
         
@@ -57,8 +55,8 @@
 	 
 	  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		  <property name="dataSource" ref="dataSource" />
-		  <property name="mapperLocations" value="classpath*:cn/zhb//**/mapper/*.xml" />
-		  <property name="configLocation" value="classpath*:cn/zhb//**/mapper/*.xml" />
+		  <property name="mapperLocations" value="classpath:cn/zhb/**/mapper/*.xml" />
+		  <property name="configLocation" value="classpath:cn/zhb/**/mapper/*.xml" />
 		</bean>
 	
 	   <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  

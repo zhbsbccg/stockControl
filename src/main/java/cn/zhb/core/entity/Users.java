@@ -1,6 +1,6 @@
 package cn.zhb.core.entity;
 
-public class User {
+public class Users {
 	private Integer id;
 	private String name;
 	private String username;

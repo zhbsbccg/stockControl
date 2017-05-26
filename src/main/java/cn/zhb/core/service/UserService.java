@@ -1,7 +1,7 @@
 package cn.zhb.core.service;
 
-import cn.zhb.core.entity.User;
+import cn.zhb.core.entity.Users;
 
 public interface UserService {
-	User getUserByUsername(String userName);
+	Users getUserByUsername(String userName);
 }

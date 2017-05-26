@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.zhb.core.mapper.UserMapper">
-	 <select id="getUserByUsername" resultType="User">
-	   select * from user where id = #{userName}
+	 <select id="getUserByUsername" resultType="Users">
+	   select * from users where username = #{userName}
 	 </select>
 </mapper>

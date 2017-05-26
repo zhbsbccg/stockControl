@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.zhb.core.entity.User;
+import cn.zhb.core.entity.Users;
 import cn.zhb.core.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +20,8 @@ public class UserServiceTest {
 	
 	@Test
 	public void test() {
-		User user = userService.getUserByUsername("admin");
+		Users user = userService.getUserByUsername("admin");
+		System.out.println(user);
 		assertNotNull(user);
 	}
 	

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import cn.zhb.core.entity.Users;
 
 @Repository
-public interface UserMapper {
+public interface UsersMapper {
 	Users getUserByUsername(String userName);
 }

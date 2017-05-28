@@ -5,13 +5,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.zhb.core.entity.Users;
-import cn.zhb.core.mapper.UserMapper;
-import cn.zhb.core.service.UserService;
+import cn.zhb.core.mapper.UsersMapper;
+import cn.zhb.core.service.UsersService;
 
 @Service("userService")
-public class UserServiceI implements UserService {
+public class UsersServiceI implements UsersService {
 	@Resource
-	private UserMapper userMappe;
+	private UsersMapper userMappe;
 	
 	@Override
 	public Users getUserByUsername(String userName) {

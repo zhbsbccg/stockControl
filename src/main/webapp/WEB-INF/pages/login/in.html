@@ -33,10 +33,10 @@
             <form id="loginForm" v-on:submit.prevent="onSubmitForm">
               <h1>用户登录</h1>
               <div class="item">
-                <input type="text" name="username" class="form-control" placeholder="用户名" required="required"/>
+                <input type="text" v-model="username" id="username" class="form-control" placeholder="用户名" required="required"/>
               </div>
               <div class="item">
-                <input type="password" name="password" class="form-control" placeholder="密码" required="required"/>
+                <input type="password" v-model="password" name="password" id="password" class="form-control" placeholder="密码" required="required"/>
               </div>
               <div>
               	<button class="btn" type="submit" >登录</button>
@@ -72,12 +72,15 @@
 	<script type="text/javascript">
 		var formVue = new Vue({
 		  el: '#loginForm',
-		  datas: {
-			  
+		  data: {
+			  username: '',
+			  password: ''
 		  },
 		  methods: {
 			  onSubmitForm: function() {
-				 	
+				 	$.post("/checkUser.action", {"username": this.username, password: this.password}, function(data) {
+				 		console.log(data);
+				 	});
 			  }
 		  }
 		});

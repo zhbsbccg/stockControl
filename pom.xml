@@ -51,11 +51,14 @@
 	    <groupId>javax.servlet.jsp</groupId>
 	    <artifactId>jsp-api</artifactId>
 	    <version>2.2</version>
+	    <!-- 不打包，使用tomcat里的 -->
+	    <scope>provided</scope>
 	</dependency>
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>3.1.0</version>
+	    <scope>provided</scope>
 	</dependency> 
 	<!-- thymeleaf -->
 	<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
@@ -124,5 +127,16 @@
 		        </configuration>
 		      </plugin>
 	  </plugins>
+	  
+	  <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+	  
   </build>
 </project>

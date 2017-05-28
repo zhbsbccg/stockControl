@@ -1,25 +1,38 @@
 package cn.zhb.core.controller;
 
-import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.zhb.core.entity.Users;
+import cn.zhb.core.service.UsersService;
 
 @Controller
 public class LoginInAction {
+	@Resource
+	private UsersService usersService;
 	
-	@RequestMapping("/login")
+	@RequestMapping("/in")
 	public String loginIn() {
-		System.out.println("dologin in");
 		return "login/in";
 	}
 	
 	@RequestMapping("/checkUser")
-	public void doLogin(HttpServletResponse resp, String username, String password) throws IOException {
-		System.out.println("登录");
-		
+	public void doLogin(HttpServletRequest request, String username, String password) throws Exception {
+		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+			throw new Exception("密码不能为空");
+		}
+		Users loginUser = usersService.getUserByUsername(username);
+		if(loginUser == null) {
+			throw new Exception("账号名错误");
+		}
+		if(!password.equals(loginUser.getPassword())) {
+			throw new Exception("密码错误");
+		}
 		//resp.sendRedirect("/main.action");
 	}
 }

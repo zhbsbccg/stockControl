@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.zhb.core.entity.Users;
 import cn.zhb.core.service.UsersService;
@@ -22,6 +23,7 @@ public class LoginInAction {
 	}
 	
 	@RequestMapping("/checkUser")
+	@ResponseBody
 	public void doLogin(HttpServletRequest request, String username, String password) throws Exception {
 		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
 			throw new Exception("密码不能为空");

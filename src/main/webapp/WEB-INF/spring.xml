@@ -10,7 +10,30 @@
 	
 	 <!-- 配置自动扫描的包 -->
 	 <context:component-scan base-package="cn.zhb.*"></context:component-scan>
-	 <mvc:annotation-driven/> 
+	 
+	 <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+   		 <constructor-arg value="UTF-8" index="0"/>
+   		 <property name="supportedMediaTypes">
+	        <list>
+	            <value>text/plain;charset=UTF-8</value>
+	        </list>
+	    </property>
+	</bean>
+	  <bean id="jackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+<!--             <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"> -->
+             <property name="supportedMediaTypes">
+                 <list>
+                     <value>application/json;charset=UTF-8</value>
+                 </list>
+             </property>
+         </bean>
+	 <mvc:annotation-driven>
+	 	 <mvc:message-converters>
+	        <ref bean="stringHttpMessageConverter"/>
+	        <ref bean="jackson2HttpMessageConverter"/>
+   		</mvc:message-converters>
+	  </mvc:annotation-driven> 
+	   
 	<!-- 数据库映射配置DataSource.xml -->
 	 <import resource="dataSource.xml" />
 	

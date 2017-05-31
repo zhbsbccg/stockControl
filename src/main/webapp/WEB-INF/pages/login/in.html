@@ -80,6 +80,11 @@
 			  onSubmitForm: function() {
 				 	$.post("/checkUser.action", {"username": this.username, password: this.password}, function(data) {
 				 		console.log(data);
+				 	})
+				 	.fail(function(errorData, message, error) {
+				 		console.log(errorData);
+				 		console.log(message);
+				 		console.log(error);
 				 	});
 			  }
 		  }

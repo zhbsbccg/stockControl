@@ -69,6 +69,7 @@
     <script src="/dist/gentelella/vendors/nprogress/nprogress.js"></script>
 	<!-- vuejs -->
 	<script src="/js/vue/vue.js"></script>
+	<script src="/js/zhbUtil.js"></script>
 	<script type="text/javascript">
 		var formVue = new Vue({
 		  el: '#loginForm',
@@ -78,7 +79,10 @@
 		  },
 		  methods: {
 			  onSubmitForm: function() {
-				  	$.ajax({
+				  $.postJson("/checkUser.action", {username: this.username, password: this.password}, function(data) {
+					  
+				  });
+				  	/* $.ajax({
 				  		 type: "POST",
 				         url: "/checkUser.action",
 				         contentType: "application/json;charset=utf-8",
@@ -90,7 +94,7 @@
 				         error: function() {
 				        	 
 				         }
-				  	});
+				  	}); */
 				 	/* $.post("/checkUser.action", {"username": this.username, password: this.password}, function(data) {
 				 		console.log(data);
 				 	}, 'json')

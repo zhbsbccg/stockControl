@@ -13,10 +13,11 @@ public class UsersServiceI implements UsersService {
 	@Resource
 	private UsersMapper userMappe;
 	
-	@Override
 	public Users getUserByUsername(String userName) {
 		// TODO Auto-generated method stub
 		return userMappe.getUserByUsername(userName);
 	}
+	
+	
 	
 }

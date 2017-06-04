@@ -4,19 +4,23 @@ package cn.zhb.core.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.zhb.core.entity.JsonResponse;
 import cn.zhb.core.entity.Users;
+import cn.zhb.core.exception.JsonSendException;
 import cn.zhb.core.service.UsersService;
 
 @Controller
 public class LoginInAction {
 	@Resource
 	private UsersService usersService;
+	
 	
 	@RequestMapping("/in")
 	public String loginIn() {
@@ -25,16 +29,16 @@ public class LoginInAction {
 	
 	@RequestMapping("/checkUser")
 	@ResponseBody
-	public void doLogin(HttpServletRequest request, @RequestBody Users users) throws Exception {
+	public void doLogin(HttpServletRequest request, @RequestBody Users users, @Autowired JsonResponse jsonResponse) throws Exception {
 		if(StringUtils.isEmpty(users.getUsername()) || StringUtils.isEmpty(users.getPassword())) {
-			throw new Exception("密码不能为空");
+			throw new JsonSendException("密码不能为空");
 		}
 		Users loginUser = usersService.getUserByUsername(users.getUsername());
 		if(loginUser == null) {
-			throw new Exception("账号名错误");
+			throw new JsonSendException("账号名错误");
 		}
 		if(!users.getPassword().equals(loginUser.getPassword())) {
-			throw new Exception("密码错误");
+			throw new JsonSendException("密码错误");
 		}
 		//resp.sendRedirect("/main.action");
 	}

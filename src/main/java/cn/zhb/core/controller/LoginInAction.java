@@ -29,7 +29,7 @@ public class LoginInAction {
 	
 	@RequestMapping("/checkUser")
 	@ResponseBody
-	public void doLogin(HttpServletRequest request, @RequestBody Users users, @Autowired JsonResponse jsonResponse) throws Exception {
+	public JsonResponse doLogin(HttpServletRequest request, @RequestBody Users users, @Autowired JsonResponse jsonResponse) throws JsonSendException {
 		if(StringUtils.isEmpty(users.getUsername()) || StringUtils.isEmpty(users.getPassword())) {
 			throw new JsonSendException("密码不能为空");
 		}
@@ -40,6 +40,9 @@ public class LoginInAction {
 		if(!users.getPassword().equals(loginUser.getPassword())) {
 			throw new JsonSendException("密码错误");
 		}
+		return jsonResponse;
+		
+		
 		//resp.sendRedirect("/main.action");
 	}
 }

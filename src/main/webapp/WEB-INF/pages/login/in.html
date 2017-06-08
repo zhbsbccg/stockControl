@@ -37,6 +37,7 @@
               </div>
               <div class="item">
                 <input type="password" v-model="password" name="password" id="password" class="form-control" placeholder="密码" required="required"/>
+                <div style="color: red" >{{ errorMessage }}</div>
               </div>
               <div>
               	<button class="btn" type="submit" >登录</button>
@@ -75,34 +76,19 @@
 		  el: '#loginForm',
 		  data: {
 			  username: '',
-			  password: ''
+			  password: '',
+			  errorMessage:''
 		  },
 		  methods: {
 			  onSubmitForm: function() {
 				  $.postJson("/checkUser.action", {username: this.username, password: this.password}, function(data) {
-					  
+					  if(data && data.errorNum == 0) {
+						  href.location("/main.action");
+					  }else {
+						  this.errorMessage = data.errorMessage;
+					  }
 				  });
-				  	/* $.ajax({
-				  		 type: "POST",
-				         url: "/checkUser.action",
-				         contentType: "application/json;charset=utf-8",
-				         data: JSON.stringify({username: this.username, password: this.password}),
-				         dataType: "json",
-				         success: function(data) {
-				        	 alert(data);
-				         },
-				         error: function() {
-				        	 
-				         }
-				  	}); */
-				 	/* $.post("/checkUser.action", {"username": this.username, password: this.password}, function(data) {
-				 		console.log(data);
-				 	}, 'json')
-				 	.fail(function(errorData, message, error) {
-				 		console.log(errorData);
-				 		console.log(message);
-				 		console.log(error);
-				 	}); */
+				  	
 			  }
 		  }
 		});

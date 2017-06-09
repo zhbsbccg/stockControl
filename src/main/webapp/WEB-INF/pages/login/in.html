@@ -60,6 +60,8 @@
        
       </div>
     </div>
+	<!-- vuejs -->
+	<script src="/js/vue/vue.js"></script>
      <!-- jQuery -->
     <script src="/dist/gentelella/vendors/jquery/dist/jquery.js"></script>
     <!-- Bootstrap -->
@@ -68,8 +70,6 @@
     <script src="/dist/gentelella/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="/dist/gentelella/vendors/nprogress/nprogress.js"></script>
-	<!-- vuejs -->
-	<script src="/js/vue/vue.js"></script>
 	<script src="/js/zhbUtil.js"></script>
 	<script type="text/javascript">
 		var formVue = new Vue({
@@ -81,13 +81,16 @@
 		  },
 		  methods: {
 			  onSubmitForm: function() {
-				  $.postJson("/checkUser.action", {username: this.username, password: this.password}, function(data) {
-					  if(data && data.errorNum == 0) {
-						  href.location("/main.action");
-					  }else {
-						  this.errorMessage = data.errorMessage;
-					  }
-				  });
+				 
+					  $.postJson("/checkUser.action", {username: this.username, password: this.password}, function(data) {
+						  if(data && data.errorNum == 0) {
+							  href.location("/main.action");
+						  }else {
+							 	 formVue.errorMessage = data.errorMessage;
+						  }
+					  }); 
+				  
+				  	//this.errorMessage = "test";
 				  	
 			  }
 		  }

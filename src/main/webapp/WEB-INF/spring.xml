@@ -9,7 +9,8 @@
         default-autowire="byName">
 	
 	 <!-- 配置自动扫描的包 -->
-	 <context:component-scan base-package="cn.zhb.*"></context:component-scan>
+	 <context:component-scan base-package="cn.zhb.*">
+	 </context:component-scan>
 	 
 	 <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
    		 <constructor-arg value="UTF-8" index="0"/>

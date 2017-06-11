@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
  * @param <T>
  */
 @Component
+@Scope("property")
 public class JsonResponse<T> {
 	private int errorNum;
 	private String errorMessage;

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import cn.zhb.core.entity.JsonResponse;
 import cn.zhb.core.exception.JsonSendException;
-import cn.zhb.core.service.JsonResponseService;
 
 
 
@@ -21,14 +20,13 @@ import cn.zhb.core.service.JsonResponseService;
 public class CatchJsonExceptionAction {
 	private Logger logger = Logger.getLogger(CatchJsonExceptionAction.class);
 	
-	@Resource
-	private JsonResponseService jsonResponseService;
+	
 	
 	@ExceptionHandler({JsonSendException.class})
 	@ResponseBody
-	public JsonResponse handleJsonException(HttpServletRequest request, Exception ex  ) {
+	public JsonResponse handleJsonException(HttpServletRequest request, JsonSendException ex  ) {
 		logger.error("ajax error: ", ex);
-		return jsonResponseService.throwJsonResponseError(ex);
+		return ex.getJsonResponse();
 	}
 	
 	

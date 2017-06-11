@@ -16,6 +16,7 @@ import cn.zhb.core.entity.Users;
 import cn.zhb.core.exception.JsonSendException;
 import cn.zhb.core.service.UsersService;
 
+
 @Controller
 public class LoginInAction {
 	@Resource
@@ -31,14 +32,15 @@ public class LoginInAction {
 	@ResponseBody
 	public JsonResponse doLogin(HttpServletRequest request, @RequestBody Users users, @Autowired JsonResponse jsonResponse) throws JsonSendException {
 		if(StringUtils.isEmpty(users.getUsername()) || StringUtils.isEmpty(users.getPassword())) {
-			throw new JsonSendException("密码不能为空");
+			throw new JsonSendException("密码不能为空", jsonResponse);
 		}
 		Users loginUser = usersService.getUserByUsername(users.getUsername());
 		if(loginUser == null) {
-			throw new JsonSendException("账号名错误");
+			throw new JsonSendException("账号名错误", jsonResponse);
 		}
-		if(!users.getPassword().equals(loginUser.getPassword())) {
-			throw new JsonSendException("密码错误");
+		String md5Password = usersService.encodePassword(loginUser.getPassword());
+		if(!users.getPassword().equals(md5Password)) {
+			throw new JsonSendException("密码错误", jsonResponse);
 		}
 		return jsonResponse;
 		

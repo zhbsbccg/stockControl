@@ -21,6 +21,24 @@
 </dependencyManagement>
   
   <dependencies>
+  	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+	<dependency>
+	    <groupId>commons-codec</groupId>
+	    <artifactId>commons-codec</artifactId>
+	    <version>1.10</version>
+	</dependency>
+  <!-- langutils -->
+  <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.5</version>
+</dependency>
+  <!-- ioutils -->
+  	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>1.3.2</version>
+	</dependency>
   	<!-- spring -->
     <dependency>
         <groupId>org.springframework</groupId>

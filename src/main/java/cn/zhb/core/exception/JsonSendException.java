@@ -14,6 +14,7 @@ public class JsonSendException extends Exception {
 	
 	public JsonSendException(String message, JsonResponse jsonResponse) {
 		this.message = message;
+		this.jsonResponse = jsonResponse;
 		int errorNum = jsonResponse.getErrorNum();
 		jsonResponse.setErrorNum( ++ errorNum);
 		jsonResponse.setErrorMessage(message);

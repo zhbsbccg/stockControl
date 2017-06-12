@@ -83,7 +83,7 @@
 			  onSubmitForm: function() {
 					  $.postJson("/checkUser.action", {username: this.username, password: this.password}, function(data) {
 						  if(data && data.errorNum == 0) {
-							  herf.location("/main.action");
+							  window.location.href= "/main.action";
 						  }else {
 							 	 formVue.errorMessage = data.errorMessage;
 						  }

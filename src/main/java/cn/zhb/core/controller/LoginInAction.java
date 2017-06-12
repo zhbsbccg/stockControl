@@ -38,8 +38,8 @@ public class LoginInAction {
 		if(loginUser == null) {
 			throw new JsonSendException("账号名错误", jsonResponse);
 		}
-		String md5Password = usersService.encodePassword(loginUser.getPassword());
-		if(!users.getPassword().equals(md5Password)) {
+		String md5Password = usersService.encodePassword(users.getPassword());
+		if(!loginUser.getPassword().equals(md5Password)) {
 			throw new JsonSendException("密码错误", jsonResponse);
 		}
 		return jsonResponse;

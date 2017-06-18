@@ -3,6 +3,7 @@ package cn.zhb.core.service.impl;
 import java.security.NoSuchAlgorithmException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,21 @@ public class UsersServiceI implements UsersService {
 		// TODO Auto-generated method stub
 		return DigestUtils.md5Hex(password);
 	}
+
+	@Override
+	public void setUserToSession(Users users, HttpSession session) {
+		// TODO Auto-generated method stub
+		users.setPassword("");
+		session.setAttribute("currUser", users);
+	}
+
+	@Override
+	public Users getUserFromSession(HttpSession session) {
+		// TODO Auto-generated method stub
+		return (Users) session.getAttribute("currUser");
+	}
+	
+	
 	
 	
 	

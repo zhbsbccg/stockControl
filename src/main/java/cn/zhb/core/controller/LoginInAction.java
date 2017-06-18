@@ -3,6 +3,7 @@ package cn.zhb.core.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,9 @@ public class LoginInAction {
 		if(!loginUser.getPassword().equals(md5Password)) {
 			throw new JsonSendException("密码错误", jsonResponse);
 		}
+		HttpSession session = request.getSession();
+		usersService.setUserToSession(loginUser, session);
+		
 		return jsonResponse;
 		
 		

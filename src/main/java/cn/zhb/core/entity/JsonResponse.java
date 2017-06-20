@@ -15,7 +15,14 @@ public class JsonResponse<T> {
 	private int errorNum;
 	private String errorMessage;
 	private T response;
+	private int flag;
 	
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 	public int getErrorNum() {
 		return errorNum;
 	}

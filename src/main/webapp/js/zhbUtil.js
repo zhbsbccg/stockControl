@@ -23,10 +23,20 @@
 })(jQuery);
 
 var usersUtil = {
+		currentUser: {},
 		/**
 		 * 从session拿到当前用户数据
 		 */
 		getCurrentUser: function() {
-			
+			if(!usersUtil.currentUser.id) {
+				$.postJsonSync("/getCurrentUser.action", {}, function(data) {
+					if(data && data.errorNum == 0) {
+						usersUtil.currentUser = data.response;
+					} else {
+						window.location.href= "/in.action";
+					}
+				});
+			}
+			return usersUtil.currentUser;
 		}
 }

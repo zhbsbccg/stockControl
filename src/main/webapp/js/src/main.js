@@ -6,12 +6,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import setPassword from './page/setPassword.vue'
 
-Vue.use(Router)
+Vue.use(Router);
 
 // routing
-const router = new Router(
+const router = new Router({
 	routes: [
-		
+		{ path: '/setPwd', component: setPassword }
 	]
-);
+});
 
+const app = new Vue({
+  router
+}).$mount('#mainBody');

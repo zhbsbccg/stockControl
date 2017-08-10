@@ -4,22 +4,20 @@
    "author": "zhb",
    "description": "库存管理",
    "dependencies": {
-      "vue": "^2.3.4",
-      "vue-router": "^2.6.0"
+      
    },
    "devDependencies": {
       "babel-core": "^6.25.0",
       "babel-loader": "^7.1.0",
       "babel-plugin-transform-runtime": "^6.23.0",
       "babel-preset-es2015": "^6.24.1",
+      "babel-preset-stage-2": "^6.24.1",
       "babel-runtime": "^6.23.0",
-      "vue-loader": "^12.2.1",
-      "vue-template-compiler": "^2.3.4",
       "webpack": "^3.0.0",
       "webpack-dev-server": "^2.5.0"
    },
    "scripts": {
-      "dev": "webpack-dev-server --inline --hot --no-info",
+      "dev": "webpack --watch",
       "build": "webpack --progress --hide-modules"
    }
 }

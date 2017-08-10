@@ -47,7 +47,7 @@
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
-                <h2>{{currentUser.name}}</h2>
+                <h2 th:text="${session.currUser.name}"></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -148,17 +148,14 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    {{currentUser.name}}
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" th:text="${session.currUser.name}">
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> 个人信息</a></li>
+                    <li><a data-pjax href="/page/userinfo_view.action"> 修改个人信息</a></li>
                     <li>
                       
-                       <router-link to="/setPwd"><span>修改密码</span></router-link>
-                        
-                      
+                       <a href="#"><span>修改密码</span></a>
                     </li>
               
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> 登出</a></li>
@@ -173,9 +170,9 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" id="pjax-container">
           <!-- main ringht info  -->
-
+         
           
         </div>
         <!-- /page content -->
@@ -231,19 +228,17 @@
 
     
     
-    <!-- vuejs -->
-	<script src="/js/vue/vue.js"></script>
 	<script src="/js/zhbUtil.js"></script>
-    
+	<script src="/js/jquery.pjax.js"></script>
 	<script>
-	  var mainBodyVue = new Vue({
-			el: "#mainBody",
-			data: {
-				currentUser: usersUtil.getCurrentUser()
-			}
-		});  
+	$(function() {
+		$(document).pjax('a[data-pjax]', '#pjax-container', {
+
+    	});
+	});
 	
 	</script>
+  
 	<!-- Custom Theme Scripts -->
     <script src="/dist/gentelella/build/js/custom.min.js"></script>
   </body>

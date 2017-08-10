@@ -177,6 +177,7 @@
 		          <artifactId>tomcat7-maven-plugin</artifactId>
 		          <version>2.2</version>
 		        <configuration>
+		        	<port>8085</port>
 		        	<path>/</path>
 		        	<!-- <update>true</update> -->
 		        	<username>tomcat123</username>  

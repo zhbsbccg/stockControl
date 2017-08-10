@@ -19,7 +19,6 @@ public class UsersServiceI implements UsersService {
 	private UsersMapper userMappe;
 	
 	public Users getUserByUsername(String userName) {
-		// TODO Auto-generated method stub
 		return userMappe.getUserByUsername(userName);
 	}
 	
@@ -28,21 +27,23 @@ public class UsersServiceI implements UsersService {
 	 * @throws NoSuchAlgorithmException 
 	 */
 	public String encodePassword(String password) {
-		// TODO Auto-generated method stub
 		return DigestUtils.md5Hex(password);
 	}
 
 	@Override
 	public void setUserToSession(Users users, HttpSession session) {
-		// TODO Auto-generated method stub
 		users.setPassword("");
 		session.setAttribute("currUser", users);
 	}
 
 	@Override
 	public Users getUserFromSession(HttpSession session) {
-		// TODO Auto-generated method stub
 		return (Users) session.getAttribute("currUser");
+	}
+
+	@Override
+	public Users getById(Integer id) {
+		return userMappe.getById(id);
 	}
 	
 	

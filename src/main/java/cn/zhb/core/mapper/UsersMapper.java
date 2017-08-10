@@ -7,4 +7,5 @@ import cn.zhb.core.entity.Users;
 @Repository
 public interface UsersMapper {
 	Users getUserByUsername(String userName);
+	Users getById(Integer id);
 }

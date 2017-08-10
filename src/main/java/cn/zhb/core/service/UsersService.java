@@ -14,4 +14,6 @@ public interface UsersService {
 	void setUserToSession(Users users, HttpSession session);
 	
 	Users getUserFromSession(HttpSession session);
+	
+	Users getById(Integer id);
 }

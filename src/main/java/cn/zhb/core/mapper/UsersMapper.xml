@@ -7,4 +7,7 @@
 	 <select id="getUserByUsername" resultType="Users">
 	   select * from users where username = #{userName}
 	 </select>
+	 <select id="getById" resultType="Users">
+	   select * from users where id = #{id}
+	 </select>
 </mapper>

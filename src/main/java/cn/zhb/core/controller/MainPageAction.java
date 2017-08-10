@@ -1,7 +1,10 @@
 package cn.zhb.core.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -21,7 +24,17 @@ public class MainPageAction {
 	
 	
 	@RequestMapping("/main")
-	public String main() {
+	public String main(HttpServletRequest request, HttpServletResponse response) {
+		Users currentUsers = usersService.getUserFromSession(request.getSession());
+		if(currentUsers == null) {
+			try {
+				response.sendRedirect("/in.action");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		return "/main";
 	}
 	

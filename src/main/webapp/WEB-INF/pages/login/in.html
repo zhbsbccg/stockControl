@@ -30,17 +30,17 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form id="loginForm" v-on:submit.prevent="onSubmitForm">
+            <form id="loginForm" >
               <h1>用户登录</h1>
               <div class="item">
-                <input type="text" v-model="username" id="username" class="form-control" placeholder="用户名" required="required"/>
+                <input type="text"  id="username" class="form-control" placeholder="用户名" required="required"/>
               </div>
               <div class="item">
-                <input type="password" v-model="password" name="password" id="password" class="form-control" placeholder="密码" required="required"/>
-                <div style="color: red" >{{ errorMessage }}</div>
+                <input type="password" name="password" id="password" class="form-control" placeholder="密码" required="required"/>
+                <div style="color: red" id="errorMsg"></div>
               </div>
               <div>
-              	<button class="btn" type="submit" >登录</button>
+              	<button class="btn" type="submit" id="submitBtn" >登录</button>
                <!--  <a class="btn btn-default submit" href="index.html">登录</a> -->
               </div>
 
@@ -60,8 +60,7 @@
        
       </div>
     </div>
-	<!-- vuejs -->
-	<script src="/js/vue/vue.js"></script>
+
      <!-- jQuery -->
     <script src="/dist/gentelella/vendors/jquery/dist/jquery.js"></script>
     <!-- Bootstrap -->
@@ -72,7 +71,29 @@
     <script src="/dist/gentelella/vendors/nprogress/nprogress.js"></script>
 	<script src="/js/zhbUtil.js"></script>
 	<script type="text/javascript">
-		var formVue = new Vue({
+		$(function() {
+			$("#loginForm").on('submit', function(e) {
+				
+				e.preventDefault(); 
+				var username = $('#username').val();
+				var password = $('#password').val();
+				if(!username || !password) {
+					$('#errorMsg').html('账号名密码不能为空');
+					return;
+					
+				}
+           $.postJson("/checkUser.action", {username: username, password: password}, function(data) {
+              if(data && data.errorNum == 0) {
+                window.location.href= "/main.action";
+              }else {
+                 $('#errorMsg').html(data.errorMessage);
+              }
+            }); 
+      });
+		});
+		
+	
+		/* var formVue = new Vue({
 		  el: '#loginForm',
 		  data: {
 			  username: '',
@@ -90,7 +111,7 @@
 					  }); 
 			  }
 		  }
-		});
+		}); */
 
 	</script>
   </body>

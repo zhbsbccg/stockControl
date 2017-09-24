@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+body {
+	overflow: hidden;
+}
+#mainIframe {
+	border: 0px;
+	width: 100%;
+	height: 10%;	
+	
+}

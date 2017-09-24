@@ -20,6 +20,19 @@
 			this.postJson(url, data, successFun, errorFun, completeFun, false);
 		}
 	});
+	$.fn.formToJson = function() {
+		var datas = $(this).serialize();
+		var jsonData = {};
+		if(datas){
+			var dataArr = datas.split("&");
+			$.each(dataArr, function() {
+				var　this_arr = this.split("=");
+				jsonData[this_arr[0]] = this_arr[1];
+			});
+		}
+		return jsonData;
+	}
+	
 })(jQuery);
 
 var usersUtil = {

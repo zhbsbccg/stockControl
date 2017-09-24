@@ -25,6 +25,7 @@
     <!-- bootstrap-daterangepicker -->
     <link href="/dist/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+    <link href="/css/main.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/dist/gentelella/build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -152,7 +153,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a data-pjax href="/page/userinfo_view.action"> 修改个人信息</a></li>
+                    <li><a data-pjax href="javascript:toPage('/page/userinfo_view.action')"> 修改个人信息</a></li>
                     <li>
                       
                        <a href="#"><span>修改密码</span></a>
@@ -172,7 +173,7 @@
         <!-- page content -->
         <div class="right_col" role="main" id="pjax-container">
           <!-- main ringht info  -->
-         
+         	<iframe id="mainIframe"></iframe>
           
         </div>
         <!-- /page content -->
@@ -229,17 +230,18 @@
     
     
 	<script src="/js/zhbUtil.js"></script>
-	<script src="/js/jquery.pjax.js"></script>
+	<!-- <script src="/js/jquery.pjax.js"></script> -->
 	<script>
-	$(function() {
+/* 	$(function() {
 		$(document).pjax('a[data-pjax]', '#pjax-container', {
 
     	});
-	});
+	}); */
 	
 	</script>
   
 	<!-- Custom Theme Scripts -->
     <script src="/dist/gentelella/build/js/custom.min.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

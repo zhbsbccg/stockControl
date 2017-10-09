@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.zhb.core.entity.JsonResponse;
@@ -33,8 +34,12 @@ public class UserInfoAction {
 	
 	@RequestMapping("/ajax/saveUserinfo")
 	@ResponseBody
-	public JsonResponse saveUserinfo(@Autowired JsonResponse jRes, @RequestBody Users users, String oldpassword) {
-		
+	public JsonResponse saveUserinfo(@Autowired JsonResponse jRes, @RequestBody Users users, HttpServletRequest request) {
+		if(users.getId() == null) {
+			//获取当前sessionid
+			users.setId(usersService.getUserFromSession(request.getSession()).getId());
+		}
+		//update users
 		
 		
 		

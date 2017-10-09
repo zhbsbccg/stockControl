@@ -8,4 +8,5 @@ import cn.zhb.core.entity.Users;
 public interface UsersMapper {
 	Users getUserByUsername(String userName);
 	Users getById(Integer id);
+	int update(Users users);
 }

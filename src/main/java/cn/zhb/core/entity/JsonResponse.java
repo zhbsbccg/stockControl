@@ -33,6 +33,7 @@ public class JsonResponse<T> {
 		return errorMessage;
 	}
 	public void setErrorMessage(String errorMessage) {
+		this.setErrorNum(getErrorNum() + 1);
 		this.errorMessage = errorMessage;
 	}
 	public T getResponse() {

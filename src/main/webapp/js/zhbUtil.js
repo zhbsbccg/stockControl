@@ -3,7 +3,7 @@
  */
 (function($) {
 	$.extend({
-		postJson: function(url, data, successFun, errorFun, completeFun, async) {
+		postJson: function(url, data, successFun, jsonErrorFun, errorFun, completeFun, async) {
 			$.ajax({
 		  		 type: "POST",
 		         url: url,
@@ -11,7 +11,17 @@
 		         data: JSON.stringify(data),
 		         dataType: "json",
 		         async: arguments.length == 6 ? async: true,
-		         success: successFun,
+		         success: function(data) {
+		        	 if(data.errorNum > 0) {
+		        		 if(!jsonErrorFun ){
+		        			 alert(data.errorMessage);
+		        		 } else {
+		        			 jsonErrorFun(data);
+		        		 }
+		        	 } else {
+		        		 successFun(data);
+		        	 }
+		         },
 		         error: errorFun,
 		         complete: completeFun
 		  	});
@@ -22,6 +32,8 @@
 	});
 	$.fn.formToJson = function() {
 		var datas = $(this).serialize();
+		console.log(datas);
+		datas = decodeURIComponent(datas);
 		var jsonData = {};
 		if(datas){
 			var dataArr = datas.split("&");
@@ -34,6 +46,14 @@
 	}
 	
 })(jQuery);
+var formCheck = {
+	formRequired : function(form) {
+		
+		
+	}
+		
+		
+}
 
 var usersUtil = {
 		currentUser: {},

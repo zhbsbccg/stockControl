@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,8 +25,9 @@ public class MainPageAction {
 	
 	
 	@RequestMapping("/main")
-	public String main(HttpServletRequest request, HttpServletResponse response) {
+	public String main(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		Users currentUsers = usersService.getUserFromSession(request.getSession());
+		model.put("currentUsers", currentUsers);
 		if(currentUsers == null) {
 			try {
 				response.sendRedirect("/in.action");

@@ -16,4 +16,8 @@ public interface UsersService {
 	Users getUserFromSession(HttpSession session);
 	
 	Users getById(Integer id);
+	
+	int update(Users user);
+	
+	boolean checkPasswordById(Integer id, String password);
 }

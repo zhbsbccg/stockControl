@@ -1,6 +1,7 @@
 package cn.zhb.core.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import cn.zhb.core.entity.JsonResponse;

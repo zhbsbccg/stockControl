@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>修改个人信息</title>
-    <!-- Bootstrap -->
-    <link href="/dist/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<head th:include="./includeFile::header" />
 <body>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-xs-6">
-			<div class="row">
-				<div class="col-xs-12">
-				<h3>修改个人信息</h3>
-				</div>
-			</div>
-		<div class="row">
-				<div class="col-xs-12">
+		<div class="col-xs-12 page-title">
+				<h3 th:text="${title}"></h3>
+		</div>
+				<div class="col-xs-4">
 					<form class="form-horizontal" id="userinfoForm" novalidate="false">
 					<input  name="id" type="hidden" th:value="${user.id}" />
 					 <div class="form-group">
@@ -65,14 +53,9 @@
 				
 	
 		
-		</div>
-	</div>
+	
 </div>
- <!-- jQuery -->
-    <script src="/dist/gentelella/vendors/jquery/dist/jquery.min.js"></script>
-     <!-- Bootstrap -->
-    <script src="/dist/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/js/zhbUtil.js"></script>
+
 <script>
 $(function() {
 	$("#userinfoForm").on("submit", function(e) {

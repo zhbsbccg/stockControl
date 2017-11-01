@@ -35,6 +35,7 @@ public class UserInfoAction {
 	public String userinfo_view(HttpServletRequest request, ModelMap model) {
 		Users currentUser = usersService.getUserFromSession(request.getSession());
 		model.put("user", usersService.getById(currentUser.getId()));
+		model.put("title", "修改个人信息");
 		return "/user/userinfo_view";
 	}
 	
@@ -61,6 +62,7 @@ public class UserInfoAction {
 	@RequestMapping("/page/setPassword")
 	public String setPasswordPage(HttpServletRequest request, ModelMap model) {
 		Users currentUser = usersService.getUserFromSession(request.getSession());
+		model.put("title", "修改密码");
 		model.put("user", usersService.getById(currentUser.getId()));
 		return "/user/setPassword";
 	}

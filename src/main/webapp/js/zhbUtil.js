@@ -3,6 +3,12 @@
  */
 (function($) {
 	$.extend({
+		
+		
+		
+		/**
+		 * json数据发送
+		 */
 		postJson: function(url, data, successFun, jsonErrorFun, errorFun, completeFun, async) {
 			$.ajax({
 		  		 type: "POST",
@@ -30,6 +36,30 @@
 			this.postJson(url, data, successFun, errorFun, completeFun, false);
 		}
 	});
+	/**
+	 * 表格生成工具
+	 */
+	$.fn.createTable = function(param) {
+		//初始化及合并参数
+		var defaultParam = {
+			
+		}
+		var setting = $.extend(defaultParam, param);
+		//检查参数
+		if(!setting.ajaxFun ) {
+			throw new Error("ajaxFun参数不能为空");
+		}
+		
+		
+		
+		
+		
+		
+		
+		return this;
+		
+	}
+	
 	$.fn.formToJson = function() {
 		var datas = $(this).serialize();
 		console.log(datas);
@@ -46,6 +76,9 @@
 	}
 	
 })(jQuery);
+/**
+ * 表格检查工具
+ */
 var formCheck = {
 	formRequired : function(form) {
 		

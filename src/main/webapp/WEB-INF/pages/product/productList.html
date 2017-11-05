@@ -12,42 +12,31 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<table id="tableList"></table>
+			<table id="tableList" class="table-bordered table-striped">
+				<thead>
+					<tr>
+							
+					
+					</tr>
+				</thead>
+				
+			</table>
 			<div id="pager"></div>
 		</div>
 	</div>
 </div>
 <script>
 $(function(){
-	//页面加载完成之后执行
-	pageInit();
+	
+	var a = $("#tableList").createTable({
+		ajaxFun: function() {
+			
+		}
+	});
+	
+	
+	
 });
-function pageInit(){
-	//创建jqGrid组件
-	jQuery("#tableList").jqGrid(
-			{
-				url : 'data/JSONData.json',//组件创建完成之后请求数据的url
-				datatype : "json",//请求数据返回的类型。可选json,xml,txt
-				colNames : [ 'id', '名称', '型号', '图片'],//jqGrid的列显示名字
-				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
-				             {name : 'id',index : 'id',width : 55}, 
-				             {name : 'name',index : 'invdate',width : 200}, 
-				             {name : 'model',index : 'name asc, invdate',width : 200}
-				           ],
-				rowNum : 10,//一页显示多少条
-				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
-				pager : '#pager2',//表格页脚的占位符(一般是div)的id
-				sortname : 'id',//初始化的时候排序的字段
-				sortorder : "desc",//排序方式,可选desc,asc
-				mtype : "post",//向后台请求数据的ajax的类型。可选post,get
-				viewrecords : true,
-				caption : "产品列表",//表格的标题名字
-				height: "500px"
-			});
-	/*创建jqGrid的操作按钮容器*/
-	/*可以控制界面上增删改查的按钮是否显示*/
-	jQuery("#tableList").jqGrid('navGrid', '#pager', {edit : false,add : false,del : false});
-}
 
 
 </script>

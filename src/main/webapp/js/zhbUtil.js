@@ -10,7 +10,7 @@
 		 * json数据发送
 		 */
 		postJson: function(url, data, successFun, jsonErrorFun, errorFun, completeFun, async) {
-			$.ajax({
+			return $.ajax({
 		  		 type: "POST",
 		         url: url,
 		         contentType: "application/json;charset=utf-8",
@@ -25,7 +25,9 @@
 		        			 jsonErrorFun(data);
 		        		 }
 		        	 } else {
-		        		 successFun(data);
+		        		 if(successFun) {
+		        			 successFun(data);
+		        		 }
 		        	 }
 		         },
 		         error: errorFun,
@@ -33,32 +35,10 @@
 		  	});
 		},
 		postJsonSync: function(url, data, successFun, errorFun, completeFun) {
-			this.postJson(url, data, successFun, errorFun, completeFun, false);
+			return this.postJson(url, data, successFun, errorFun, completeFun, false);
 		}
 	});
-	/**
-	 * 表格生成工具
-	 */
-	$.fn.createTable = function(param) {
-		//初始化及合并参数
-		var defaultParam = {
-			
-		}
-		var setting = $.extend(defaultParam, param);
-		//检查参数
-		if(!setting.ajaxFun ) {
-			throw new Error("ajaxFun参数不能为空");
-		}
-		
-		
-		
-		
-		
-		
-		
-		return this;
-		
-	}
+	
 	
 	$.fn.formToJson = function() {
 		var datas = $(this).serialize();
@@ -87,6 +67,8 @@ var formCheck = {
 		
 		
 }
+
+
 
 var usersUtil = {
 		currentUser: {},

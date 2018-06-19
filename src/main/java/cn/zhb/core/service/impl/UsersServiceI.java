@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.beetl.sql.core.SQLManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.zhb.core.entity.Users;
@@ -16,11 +18,14 @@ import cn.zhb.core.service.UsersService;
 
 @Service("userService")
 public class UsersServiceI implements UsersService {
-	@Resource
-	private UsersMapper userMapper;
+	/*@Resource
+	private UsersMapper userMapper;*/
+	
+	@Autowired
+	SQLManager sql;
 	
 	public Users getUserByUsername(String userName) {
-		return userMapper.getUserByUsername(userName);
+		return sql.query(Users.class).andEq("username", userName).unique();
 	}
 	
 	/**
@@ -45,13 +50,13 @@ public class UsersServiceI implements UsersService {
 
 	@Override
 	public Users getById(Integer id) {
-		return userMapper.getById(id);
+		return sql.unique(Users.class, id);
 	}
 
 	@Override
 	public int update(Users user) {
 		// TODO Auto-generated method stub
-		return userMapper.update(user);
+		return sql.updateTemplateById(user);
 	}
 
 	@Override

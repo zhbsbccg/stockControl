@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head th:include="./includeFile::header">
+</head>
+<body>
+<!-- 产品列表 -->
+<div class="container-fluid ">
+	<div class="row page-title">
+		<div class="col-xs-12">
+				<h3 th:text="${title}"></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<table id="tableList" class="table table-bordered table-striped">
+				
+				
+			</table>
+			<div id="pager"></div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	
+	var aTable = $("#tableList").createTable({
+		fieldsKey: "id",
+		fieldsDefaultType: "read",
+		fields: [
+			{index:'id', name: 'id', isEdit: false},
+			{index:'name', name: '名称', isEdit: true},
+			{index:'model', name: '型号', isEdit: true},
+			{index: 'do', name: '操作', isEdit: true, readFormatter: doSomeTd, editFormatter: doSomeTd}
+		]
+		,dataFun: function(refreshFun) {
+			
+			$.postJson("/ajax/getProductList.action", {}, function(data) {
+				if(data.response) {
+					refreshFun(data.response);
+				}
+			});
+		}
+	});
+	aTable.$ele.on("click", "button", function(){
+		var _this = $(this);
+		var key = _this.attr("key");
+		var type = _this.attr("type");
+		//保存及其他内容
+		if(type == 'edit') {
+			editBtn(aTable, key);
+		}
+		if(type == 'save') {
+			saveBtn(aTable, key);
+			
+		}
+		if(type == 'del') {
+			
+		}
+		
+	});
+	
+	
+	
+});
+
+
+function saveBtn(tObj, key) {
+	tObj.readRow(key);
+	
+	
+	
+	
+}
+/**
+ * 保存按钮
+ */
+function editBtn(tObj, key) {
+	tObj.editRow(key);
+	
+	
+}
+/**
+ * 加载操作内容
+ */
+function readDoSomeTd(key, value, rowData, htmlStr) {
+	var str = "<button class='btn btn-primary' key='" + key + "' type='edit'>编辑</button>";
+	return str;
+}
+function editDoSomeTd(key, value, rowData, htmlStr) {
+	var str = "<button class='btn btn-primary' key='" + key + "' type='save'>保存</button>" +
+							"<button class='btn btn-danger' key='" + key + "' type='del'>删除</button>";
+	return str;
+}
+
+</script>
+</body>
+</html>

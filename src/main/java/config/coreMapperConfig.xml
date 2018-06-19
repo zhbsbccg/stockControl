@@ -5,5 +5,7 @@
 <configuration>  
      <typeAliases>
 		<typeAlias type="cn.zhb.core.entity.Users" alias="Users"/>
+		<typeAlias type="cn.zhb.core.entity.Product" alias="Product"/>
+		<typeAlias type="cn.zhb.core.entity.SelectItem" alias="SelectItem"/>
 	</typeAliases>
 </configuration>

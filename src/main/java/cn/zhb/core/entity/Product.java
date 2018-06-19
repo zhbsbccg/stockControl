@@ -5,12 +5,29 @@ package cn.zhb.core.entity;
  * @author zhb
  *
  */
-public class Product {
+public class Product extends BaseEntity {
 	
 	private Integer id;
 	private String name;//名称
 	private String model;//型号
+	private String images;//图片
+	private String remark;//备注说明
 	
+	
+	
+	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -26,7 +26,7 @@ public class LoginInAction {
 	
 	@RequestMapping("/in")
 	public String loginIn() {
-		return "login/in";
+		return "/login/in";
 	}
 	
 	@RequestMapping("/checkUser")

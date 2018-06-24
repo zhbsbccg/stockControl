@@ -10,7 +10,7 @@ public class Attach {
 	private String originName;
 	private String abstractName;
 	private String path;
-	private String size;
+	private long size;
 	private String suffix;
 	private String createDate;
 	
@@ -51,10 +51,10 @@ public class Attach {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public String getSize() {
+	public long getSize() {
 		return size;
 	}
-	public void setSize(String size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 	

@@ -1,5 +1,6 @@
 package cn.zhb.core.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.zhb.core.entity.Attach;
+import cn.zhb.core.service.AttachService;
+import cn.zhb.core.utils.DateUtils;
 import cn.zhb.core.utils.PropUtils;
 
 /**
@@ -31,14 +34,27 @@ public class AttachAction {
 	
 	@Resource
 	private PropUtils propUtils;
+	@Resource
+	private AttachService attachService;
+	@Resource
+	private DateUtils dateUtils;
 	
 	
 	@RequestMapping("/ajax/getUploads")
 	public void getUploads(MultipartFile file) {
 		
 		if(file != null) {
-			String uploadPath = propUtils.getUploadPath();
+			//首先保存文件
+			String uploadPath = getSavePath();
 			String saveName = UUID.randomUUID().toString();
+			try {
+				attachService.saveFile(uploadPath, file.getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			Attach attach = new Attach();
 			
 			
@@ -57,6 +73,16 @@ public class AttachAction {
 		}*/
 			//logger.info(uploadField);
 		
+		
+	}
+	/**
+	 * 获取保存路径
+	 * @return
+	 */
+	public String getSavePath() {
+		String uploadPath = propUtils.getUploadPath();
+		int year = dateUtils.getNowYear();
+		return uploadPath + File.separator + year + File.separator;
 		
 	}
 }

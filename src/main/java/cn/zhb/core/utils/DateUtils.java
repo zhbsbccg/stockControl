@@ -18,7 +18,7 @@ public class DateUtils {
 		return longDateFormatter.format(LocalDateTime.now());
 	}
 	
-	public int gerNowYear() {
+	public int getNowYear() {
 		return LocalDate.now().getYear();
 	}
 	
